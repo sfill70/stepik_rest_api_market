@@ -5,8 +5,8 @@ from django.utils import timezone
 
 
 class Recipient(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Имя")
     surname = models.CharField(max_length=100, verbose_name="Фамилия")
+    name = models.CharField(max_length=100, verbose_name="Имя")
     patronymic = models.CharField(max_length=100, verbose_name="Отчество")
     phone_number = models.CharField(max_length=100, verbose_name="Телефон")
 
