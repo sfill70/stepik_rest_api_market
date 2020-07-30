@@ -14,10 +14,10 @@ class RecipientSerializer(Serializer):
         return Recipient.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.author = validated_data.get('surname', instance.surname)
+        instance.surname = validated_data.get('surname', instance.surname)
         instance.name = validated_data.get('name', instance.name)
-        instance.writing_year = validated_data.get('patronymic', instance.patronymic, )
-        instance.rating = validated_data.get('phone_number', instance.phone_number)
+        instance.patronymic = validated_data.get('patronymic', instance.patronymic, )
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
         instance.save()
         return instance
 
@@ -27,14 +27,13 @@ class RecipientModelSerializer(ModelSerializer):
         model = Recipient
         fields = '__all__'
 
-
     def create(self, validated_data):
         return Recipient.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.author = validated_data.get('surname', instance.surname)
+        instance.surname = validated_data.get('surname', instance.surname)
         instance.name = validated_data.get('name', instance.name)
-        instance.writing_year = validated_data.get('patronymic', instance.patronymic, )
-        instance.rating = validated_data.get('phone_number', instance.phone_number)
+        instance.patronymic = validated_data.get('patronymic', instance.patronymic, )
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
         instance.save()
         return instance
