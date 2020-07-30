@@ -5,10 +5,10 @@ from rest_framework import status
 import requests
 from requests.exceptions import Timeout
 from .util_recipient import recipients_url, list_recipient_json
-from core.views import base_view
+from core.views import handle_exception_my
 
 
-@base_view
+@handle_exception_my
 @api_view(http_method_names=['GET'])
 def recipients(request: Request) -> Response:
     try:
@@ -23,7 +23,7 @@ def recipients(request: Request) -> Response:
         return Response(recipients_list)
 
 
-@base_view
+@handle_exception_my
 @api_view(http_method_names=['GET'])
 def recipient_detail(request: Request, pk: int) -> Response:
     try:

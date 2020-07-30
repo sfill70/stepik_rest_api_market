@@ -1,4 +1,4 @@
-"""Декоратор  для вьюшек фукциий def base_view(fn) и клаасов унаследоваться - class BaseView(View)
+"""Декоратор  для вьюшек фукциий def handle_exception_my(fn) и клаасов унаследоваться - class BaseView(View)
    обработчик не отловленных исключений, сведения выводятся в браузер
    если в сетиднге дебаг=фальш вывода не будет, но не факт)))"""
 import datetime
@@ -7,9 +7,11 @@ import inspect
 import json
 import traceback
 
+from django.core.handlers.wsgi import WSGIRequest
 from stepik_rest_market.settings import DEBUG
 from django.db import transaction
 from django.http import JsonResponse
+from typing import Any, Dict, Optional, List
 from django.views import View
 
 JSON_DUMPS_PARAMS = {
@@ -28,7 +30,7 @@ def ret(json_object, status=200):
     )
 
 
-def error_response(exception):
+def error_response(exception: object):
     """Форматирует НТТР ответ с описанием ошибки и Трасебеком"""
     res = {"errorMessage": "Shit happens"}
     if DEBUG:
@@ -37,8 +39,9 @@ def error_response(exception):
     return ret(res, status=400)
 
 
-def base_view(fn):
+def handle_exception_my(fn):
     """Декоратор для вьюшк (функций), обрабатывает исключения"""
+
     @functools.wraps(fn)
     def inner(request, *args, **kwargs):
         try:
@@ -50,9 +53,10 @@ def base_view(fn):
     return inner
 
 
-class BaseView(View):
+class HandleExceptionMy(View):
 
     def dispatch(self, request, *args, **kwargs):
+        global response
         try:
             response = super().dispatch(request, *args, *kwargs)
         except Exception as e:
