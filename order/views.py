@@ -31,7 +31,8 @@ class OrderViewSet(ModelViewSet):
             # _logger.warning(data_obj)
             queryset = Order.objects.all()
             # Это  работает
-            result = Order.objects.filter(Q(order_created_datetime__date=data_obj))
+            # result = Order.objects.filter(Q(order_created_datetime__date=data_obj))
+            result = Order.objects.filter(order_created_datetime__date=data_obj)
             # Это не работает
             # result = Order.objects.filter(order_created_datetime__gt=data_obj)
             # Это  работает
