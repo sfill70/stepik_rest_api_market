@@ -30,11 +30,12 @@ class OrderViewSet(ModelViewSet):
             data_obj = datetime.strptime(data_order, '%Y-%m-%d').date()
             # _logger.warning(data_obj)
             queryset = Order.objects.all()
-            # Это не работает
-            # result = Order.objects.filter(Q(order_created_datetime__gt=data_obj))
+            # Это  работает
+            result = Order.objects.filter(Q(order_created_datetime__date=data_obj))
             # Это не работает
             # result = Order.objects.filter(order_created_datetime__gt=data_obj)
-            result = {i for i in queryset if i.order_created_datetime.date() == data_obj}
+            # Это  работает
+            # result = {i for i in queryset if i.order_created_datetime.date() == data_obj}
             if data_order:
                 # _logger.warning(data_order)
                 serializer = OrderModelSerializer(result, many=True)
