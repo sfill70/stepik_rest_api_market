@@ -16,8 +16,8 @@ class RecipientSerializer(Serializer):
         return Recipient.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        _logger.warning(validated_data)
-        _logger.warning('&&&&&&&&&&&&&&&&&&&')
+        # _logger.warning(validated_data)
+        # _logger.warning('&&&&&&&&&&&&&&&&&&&')
         instance.surname = validated_data.get('surname', instance.surname)
         instance.save()
         return instance
@@ -29,7 +29,7 @@ class RecipientModelSerializer(ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        _logger.warning(validated_data)
+        # _logger.warning(validated_data)
         return Recipient.objects.create(**validated_data)
 
     def update(self, instance, validated_data):

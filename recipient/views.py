@@ -28,7 +28,7 @@ class RecipientsViewSet(ModelViewSet):
     @action(detail=True, methods=['patch'])
     def change_surname(self, request, pk=None):
         instance = self.get_object()
-        _logger.warning(request.data)
+        # _logger.warning(request.data)
         serializer = RecipientModelSerializer2(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)

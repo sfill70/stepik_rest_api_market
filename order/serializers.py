@@ -19,6 +19,7 @@ class OrderModelSerializer(ModelSerializer):
         # _logger.warning(validated_data)
         # Поля допущенные к изменению
         instance.delivery_address = validated_data.get('delivery_address', instance.delivery_address)
+        # "created" оставим если всетаки передумает
         if validated_data['status'] == "created" or validated_data['status'] == 'cancelled':
             instance.status = validated_data.get('status', instance.status)
         # Поля не допущенные к изменению ну в принципе все остальные
