@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  django:
+    build: .
+    working_dir: /code/
+    container_name: django-gunicorn
+    restart: always
+    ports:
+      - "8000:8000"
+    command:
+      "gunicorn --workers=2 --bind=0.0.0.0:8000 stepik_rest_market.wsgi:application"
+
+#    command: gunicorn myproject.wsgi -c ./gunicorn/gunicorn.py -b 0.0.0.0:8000
