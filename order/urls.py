@@ -1,6 +1,5 @@
-
 from rest_framework.routers import DefaultRouter, SimpleRouter
-from .views import MarketViewSet
+from .views import OrderViewSet
 
 
 class OptionalSlashRouter(DefaultRouter):
@@ -10,5 +9,5 @@ class OptionalSlashRouter(DefaultRouter):
 
 
 router = OptionalSlashRouter()
-router.register("product-sets", MarketViewSet, basename='product-sets')
+router.register("orders", OrderViewSet, basename='orders')
 urlpatterns = router.urls
