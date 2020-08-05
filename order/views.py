@@ -33,8 +33,6 @@ class OrderViewSet(ModelViewSet):
             # Это  работает
             # result = Order.objects.filter(Q(order_created_datetime__date=data_obj))
             result = Order.objects.filter(order_created_datetime__date=data_obj)
-            # Это не работает
-            # result = Order.objects.filter(order_created_datetime__gt=data_obj)
             # Это  работает
             # result = {i for i in queryset if i.order_created_datetime.date() == data_obj}
             if data_order:
