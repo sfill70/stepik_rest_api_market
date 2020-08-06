@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from datetime import datetime, date, time
+from rest_framework.filters import SearchFilter
 
 _logger = getLogger(__name__)
 
