@@ -24,7 +24,7 @@ class OrderViewSet(ModelViewSet):
     filterset_fields = ['order_created_datetime', 'product_set']
     search_fields = ['order_created_datetime']
 
-    # Экшен для фильтрации по конкретной дате, в стандартном варианте, унжно вводить до секунды
+    # Экшен для фильтрации по конкретной дате
     @action(detail=False, methods=['get'])
     def filter_order(self, request):
         if request.query_params:
@@ -32,7 +32,6 @@ class OrderViewSet(ModelViewSet):
             data_obj = datetime.strptime(data_order, '%Y-%m-%d').date()
             # _logger.warning(data_obj)
             queryset = Order.objects.all()
-            # Это  работает
             # result = Order.objects.filter(Q(order_created_datetime__date=data_obj))
             result = Order.objects.filter(order_created_datetime__date=data_obj)
             # Это  работает
