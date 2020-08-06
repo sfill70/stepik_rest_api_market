@@ -24,7 +24,7 @@ class OrderViewSet(ModelViewSet):
     filterset_fields = ['order_created_datetime', 'product_set']
     search_fields = ['order_created_datetime']
 
-    # Экшен для фильтрации по конкретной дате
+    # Экшен для фильтрации по конкретной дате он не нужен search_fields это делает
     @action(detail=False, methods=['get'])
     def filter_order(self, request):
         if request.query_params:
