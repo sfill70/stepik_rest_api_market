@@ -19,7 +19,7 @@ class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     # _logger.warning(queryset)
     serializer_class = OrderModelSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['order_created_datetime', 'product_set']
 
     # Экшен для фильтрации по конкретной дате, в стандартном варианте, унжно вводить до секунды
